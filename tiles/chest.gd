@@ -37,7 +37,10 @@ func interact(node):
 		
 		match def:
 			"weapons", "items":
-				network.add_to_state(def, item)
+				if network.is_map_host():
+					itemstuff(def, item)
+				else:
+					network.peer_call_id(network.get_map_host(), self, "itemstuff", [def, item])
 			"ammo":
 				var ammo = global.get("ammo_def")[item]
 				global.ammo[ammo.ammo_type] = global.ammo.get(ammo.ammo_type) + ammo.amount
@@ -65,6 +68,14 @@ func interact(node):
 		
 		node.spritedir = "Down"
 		node.state = "default"
+
+func itemstuff(def, item):
+	network.add_to_state(def, item)
+	rpc("_receive_item", def, item)
+
+remote func _receive_item(def, item): # client receives player list from server
+	network.add_to_state(def, item)
+
 
 func show_item():
 	$Item.texture = global.get(str(def,"_def"))[item].icon

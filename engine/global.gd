@@ -10,8 +10,8 @@ const INITIAL_AMMO = {
 }
 
 const DEFAULT_EQUIPS = {"B": "Sword", "X": "", "Y": ""}
-const DEFAULT_WEAPONS = ["Sword"]
-const DEFAULT_ITEMS = []
+const DEFAULT_WEAPONS = ["Sword", "Bow", "Bomb"]
+const DEFAULT_ITEMS = ["Lantern"]
 const DEFAULT_PEARL = []
 const DEFAULT_SPIRITPEARL = 0
 const DEFAULT_HEALTH = 5

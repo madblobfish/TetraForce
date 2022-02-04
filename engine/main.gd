@@ -228,7 +228,7 @@ func set_dedicated_server(empty_timeout):
 	host_server(true, empty_timeout)
 
 func get_ipport():
-	return address_line.text.rsplit(":")
+	return address_line.text.rsplit(":", true, 1)
 
 func hide_menus():
 	for node in get_tree().get_nodes_in_group("menu"):
